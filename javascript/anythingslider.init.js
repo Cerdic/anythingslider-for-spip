@@ -9,16 +9,38 @@ jQuery(function(){
 				var settings = {
 					theme : "default",
 					expand : true,
-					resizeContents: false,
+					resizeContents: true,
 					easing: "linear"
 				};
 				var options=eval('options='+me.attr('data-slider')+';');
-				if (options)
+				if (options) {
+					// charger les CSS du slider
+					if (options.css){
+						for (var k=0;k<options.css.length;k++) {
+							if (options.css[k].length){
+								anythingslider_addStylesheet(options.css[k]);
+								var m;
+								if (m = options.css[k].match(/\/theme-(.*)[.]css$/)){
+									console.log(options.css[k]);
+									options.theme = m[1]; // definir le theme en fonction du nom de la css
+								}
+							}
+						}
+					}
 					settings = jQuery.extend(settings,options);
+				}
 
 				me.anythingSlider(settings).addClass('initialized');
 			});
 		}
+		function anythingslider_addStylesheet(url) {
+			var stylesheet = document.createElement('link');
+			stylesheet.rel = 'stylesheet';
+			stylesheet.type = 'text/css';
+			stylesheet.href =  url;
+			document.getElementsByTagName('head')[0].appendChild(stylesheet);
+		}
+
 		jQuery.getScript(dir_anythingslider+"js/jquery.anythingslider.min.js",function(){
 			init_anythingsliders();
 			onAjaxLoad(init_anythingsliders);

@@ -1,6 +1,10 @@
 <B_slider>
-<div class="slider slider-anythingslider">
-	<ul>
+<div class="nettoyeur"></div>
+<div class="slider-conteneur" style="width:#ENV{largeur,400px};height:#ENV{hauteur,20em};">
+	<ul class="slider-anythingslider"
+		data-slider='{
+		css:["#CHEMIN{anythingslider/css/anythingslider.css}","#CHEMIN{anythingslider/css/theme-metallic.css}"]
+		}'>
 		<BOUCLE_slider(ARTICLES) {id_rubrique?}{id_mot?} {logo}>
 		<li class="panel">
 			<a href="#URL_ARTICLE">[(#LOGO_ARTICLE|image_passe_partout{500,150}|image_recadre{500,150}) ]<strong>#TITRE</strong></a>
