@@ -1,0 +1,19 @@
+<plugin>
+	<nom>AnythingSlider pour SPIP</nom>
+	<auteur>Cedric Morin [->http://www.yterium.com] et Tetue [->http://romy.tetue.net/]</auteur>
+	<version>0.1.0</version>
+	<icon>prive/themes/spip/images/video_a-32.png</icon>
+	<etat>dev</etat>
+	<description>Utiliser facilement un AnythingSlider dans SPIP</description>
+	<prefix>anythingslider</prefix>
+	<pipeline>
+		<nom>affichage_final</nom>
+		<inclure>anythingslider_pipelines.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>header_prive</nom>
+		<inclure>anythingslider_pipelines.php</inclure>
+	</pipeline>
+	<necessite id="SPIP" version="[2.1.8;]" />
+	<categorie>multimedia</categorie>
+</plugin>
