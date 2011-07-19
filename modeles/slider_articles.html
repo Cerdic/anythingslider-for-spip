@@ -2,7 +2,10 @@
 <div class="slider slider-anythingslider">
 	<ul>
 		<BOUCLE_slider(ARTICLES) {id_rubrique?}{id_mot?} {logo}>
-		<li>#LOGO_ARTICLE</li>
+		<li class="panel">
+			<a href="#URL_ARTICLE">[(#LOGO_ARTICLE|image_passe_partout{500,150}|image_recadre{500,150}) ]<strong>#TITRE</strong></a>
+			#INTRODUCTION
+		</li>
 		</BOUCLE_slider>
 	</ul>
 </div>
