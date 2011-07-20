@@ -3,47 +3,52 @@ jQuery(function(){
 		/**
 		 * Fonction d'initialisation de chaque slider
 		 */
-		function init_anythingsliders(){
-			jQuery('.slider-anythingslider:not(.initialized)').each(function(){
-				var me=jQuery(this);
-				var settings = {
-					theme : "default",
-					expand : true,
-					resizeContents: true,
-					easing: "linear"
-				};
-				var options=eval('options='+me.attr('data-slider')+';');
-				if (options) {
-					// charger les CSS du slider
-					if (options.css){
-						for (var k=0;k<options.css.length;k++) {
-							if (options.css[k].length){
-								anythingslider_addStylesheet(options.css[k]);
-								var m;
-								if (m = options.css[k].match(/\/theme-(.*)[.]css$/)){
-									console.log(options.css[k]);
-									options.theme = m[1]; // definir le theme en fonction du nom de la css
+		var my_anythinslider = {
+			init : function(){
+				jQuery('.slider-anythingslider:not(.initialized)').each(function(){
+					var me=jQuery(this);
+					var settings = {
+						theme : "default",
+						expand : true,
+						resizeContents: true,
+						easing: "linear",
+						navigationFormatter: my_anythinslider.navigationFormatter
+					};
+					var options=eval('options='+me.attr('data-slider')+';');
+					if (options) {
+						// charger les CSS du slider
+						if (options.css){
+							for (var k=0;k<options.css.length;k++) {
+								if (options.css[k].length){
+									my_anythinslider.addStylesheet(options.css[k]);
+									var m;
+									if (m = options.css[k].match(/\/theme-(.*)[.]css$/)){
+										options.theme = m[1]; // definir le theme en fonction du nom de la css
+									}
 								}
 							}
 						}
+						settings = jQuery.extend(settings,options);
 					}
-					settings = jQuery.extend(settings,options);
-				}
 
-				me.anythingSlider(settings).addClass('initialized');
-			});
-		}
-		function anythingslider_addStylesheet(url) {
-			var stylesheet = document.createElement('link');
-			stylesheet.rel = 'stylesheet';
-			stylesheet.type = 'text/css';
-			stylesheet.href =  url;
-			document.getElementsByTagName('head')[0].appendChild(stylesheet);
-		}
+					me.anythingSlider(settings).addClass('initialized');
+				});
+			},
+			addStylesheet : function(url) {
+				var stylesheet = document.createElement('link');
+				stylesheet.rel = 'stylesheet';
+				stylesheet.type = 'text/css';
+				stylesheet.href =  url;
+				document.getElementsByTagName('head')[0].appendChild(stylesheet);
+			},
+			navigationFormatter : function(index, panel){ // Format navigation labels with text
+				return index;
+			}
+		};
 
 		jQuery.getScript(dir_anythingslider+"js/jquery.anythingslider.min.js",function(){
-			init_anythingsliders();
-			onAjaxLoad(init_anythingsliders);
+			my_anythinslider.init();
+			onAjaxLoad(my_anythinslider.init);
 		});
 	}
 });
