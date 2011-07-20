@@ -3,12 +3,13 @@
 <div class="slider-conteneur" style="width: #ENV{largeur,500px}; height: #ENV{hauteur,20em};">
 	<ul class="slider-anythingslider"
 		data-slider='{
-		css:["#CHEMIN{anythingslider/css/anythingslider.css}","#CHEMIN{anythingslider/css/theme-metallic.css}"]
+		css:["#CHEMIN{anythingslider/css/anythingslider.css}","#CHEMIN{anythingslider/css/theme-default.css}"]
 		}'>
 		<BOUCLE_slider(ARTICLES) {id_rubrique?}{id_mot?} {logo} {!par date}{par num titre} {0,10}>
 		<li class="panel">
 			<a href="#URL_ARTICLE">[(#LOGO_ARTICLE|image_passe_partout{500,150}|image_recadre{500,150}) ]<strong>#TITRE</strong></a>
 			#INTRODUCTION
+			<span class="slider-nav" style="display: none;">[(#LOGO_ARTICLE|image_passe_partout{25,25}|image_recadre{25,25})]</span>
 		</li>
 		</BOUCLE_slider>
 	</ul>

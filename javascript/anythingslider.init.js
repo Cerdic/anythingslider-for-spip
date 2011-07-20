@@ -42,7 +42,10 @@ jQuery(function(){
 				document.getElementsByTagName('head')[0].appendChild(stylesheet);
 			},
 			navigationFormatter : function(index, panel){ // Format navigation labels with text
-				return index;
+				if (jQuery('.slider-nav',panel).length)
+					return jQuery('.slider-nav',panel).html();
+				else
+					return index;
 			}
 		};
 
