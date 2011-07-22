@@ -1,7 +1,7 @@
 <plugin>
 <nom>AnythingSlider</nom>
 <icon>prive/icon/anythingslider-32.png</icon>
-<version>0.1.0</version>
+<version>0.2.0</version>
 <etat>dev</etat>
 <auteur>[Cedric Morin Yterium->http://www.yterium.com] et [romy.tetue.net->http://romy.tetue.net]
 _ <i lang="en">Original by [Chris Coyier->http://css-tricks.com] and [many others->https://github.com/ProLoser/AnythingSlider/wiki/Credits]</i></auteur>
