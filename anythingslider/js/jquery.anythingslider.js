@@ -190,7 +190,7 @@
 				.add(base.$startStop)
 				.add(base.$forward)
 				.add(base.$back)
-				.css('display',(base.pages <= 1) ? 'none' : 'block');
+				[(base.pages <= 1) ? 'hide' : 'show']();
 			if (base.pages > 1) {
 				// Build/update navigation tabs
 				base.buildNavigation();
