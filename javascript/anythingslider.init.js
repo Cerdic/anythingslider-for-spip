@@ -49,6 +49,9 @@ jQuery(function(){
 			}
 		};
 
+		// charger la css de base avant tout, le js repose dessus
+		if (css_anythinslider)
+			my_anythinslider.addStylesheet(css_anythinslider);
 		jQuery.getScript(dir_anythingslider+"js/jquery.anythingslider.min.js",function(){
 			my_anythinslider.init();
 			onAjaxLoad(my_anythinslider.init);

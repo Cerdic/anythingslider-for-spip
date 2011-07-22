@@ -15,9 +15,14 @@
  */
 function anythingslider_affichage_final($flux){
 	if (stripos($flux,'slider-anythingslider')){
-		$script = compacte(find_in_path('javascript/anythingslider.init.js'),'js');
+		$script = find_in_path('javascript/anythingslider.init.js');
+		include_spip('filtres/compresseur');
+		if (function_exists('compacte'))
+			$script = compacte($script,'js');
 		lire_fichier($script, $js);
-		$js = "var dir_anythingslider='"._DIR_PLUGIN_ANYTHINGSLIDER."anythingslider/';".$js;
+		$js = "var dir_anythingslider='"._DIR_PLUGIN_ANYTHINGSLIDER."anythingslider/';"
+		  . "var css_anythinslider='".find_in_path("anythingslider/css/anythingslider.css")."';"
+		  . $js;
 		$js = '<script type="text/javascript">/*<![CDATA[*/'.$js.'/*]]>*/</script>';
 		if ($p=stripos($flux,'</body>'))
 			$flux = substr_replace($flux,$js,$p,0);
@@ -34,9 +39,12 @@ function anythingslider_affichage_final($flux){
  * @return string
  */
 function anythingslider_header_prive($flux){
-	$js = "var dir_anythingslider='"._DIR_PLUGIN_ANYTHINGSLIDER."anythingslider/';";
+	$js = "var dir_anythingslider='"._DIR_PLUGIN_ANYTHINGSLIDER."anythingslider/';"
+	  . "var css_anythinslider='".find_in_path("anythingslider/css/anythingslider.css")."';";
 	$js = '<script type="text/javascript">/*<![CDATA[*/'.$js.'/*]]>*/</script>';
-	$js .= "<script type='text/javascript' src='".find_in_path('javascript/anythingslider.init.js')."'></script>";
-	$flux .= $js;
+
+	$flux = $js
+		. $flux
+		. "<script type='text/javascript' src='".find_in_path('javascript/anythingslider.init.js')."'></script>";
 	return $flux;
 }
